@@ -10,7 +10,6 @@ func generateOrderedRandomList(size int) []int {
 	randomList := make([]int, size)
 
 	for i := 0; i < size; i++ {
-		// Generate a random number between 1 and 100 (you can adjust the range as needed)
 		randomNumber := rand.Intn(1000) + 1
 		randomList[i] = randomNumber
 	}
@@ -20,10 +19,8 @@ func generateOrderedRandomList(size int) []int {
 }
 
 func getRandomNumber(list []int) int {
-	// Generate a random index within the range of the list
 	randomIndex := rand.Intn(len(list))
 
-	// Return the element at the random index
 	return list[randomIndex]
 }
 
@@ -39,6 +36,7 @@ func simpleSearch(item int, list []int) int {
 }
 
 func binarySearch(item int, list []int) int {
+	// Esta função pode ser encontrada no livro "Entendendo algoritmos". - Capítulo 1, página 27
 	listLen := len(list)
 	lowNumber := 0
 	highNumber := listLen - 1
@@ -61,20 +59,21 @@ func binarySearch(item int, list []int) int {
 }
 
 /*
-A ideia é comparar uma procura simples e uma pesquisa binária em uma lista de números ordenados.
+A ideia é utilizar dois algoritmos um de procura simples e um de pesquisa binária.
+Com isso, comparar o número de tentativas para procurar um número aleatório.
 */
 func main() {
 	numberList := generateOrderedRandomList(10000000)
 	randomNumber := getRandomNumber(numberList)
-	fmt.Printf("Random number: %d\n", randomNumber)
+	fmt.Printf("Número aleatório: %d\n", randomNumber)
 
 	// Simple Search
-	fmt.Println("Executing a simple search...")
+	fmt.Println("Executando uma pesquisa simples...")
 	attemptsTime := simpleSearch(randomNumber, numberList)
-	fmt.Printf("Attempts time to find number: %d\n", attemptsTime)
+	fmt.Printf("Número de tentativas para buscar um número: %d\n", attemptsTime)
 
 	//	Binary Search
-	fmt.Println("Executing a binary search...")
+	fmt.Println("Executando pesquisa binária...")
 	attemptsTime = binarySearch(randomNumber, numberList)
-	fmt.Printf("Attempts time to find number: %d\n", attemptsTime)
+	fmt.Printf("Número de tentativas para buscar um número: %d\n", attemptsTime)
 }
